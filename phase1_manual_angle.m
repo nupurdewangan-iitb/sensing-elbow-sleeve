@@ -1,6 +1,5 @@
 %% Phase 1 – Manual 3-Point Angle Measurement in MATLAB
 
-%
 % Instructions:
 %   1. Place your elbow image (e.g. A1.png) in the same folder as this script.
 %   2. Run the script.
