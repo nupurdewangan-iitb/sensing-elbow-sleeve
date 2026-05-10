@@ -108,24 +108,13 @@ Flex Sensor → ESP32 ADC  →  UART Serial  →  MATLAB Dashboard
 4. **Rolling X-axis:** last 10 seconds always in view.
 
 ---
-
-## Phase Study Results
+## Phase Study
 
 ### Phase 1 – Manual (PoseNet + MATLAB)
+Elbow photographs captured at multiple bending positions (0°, 45°, 90°, 135°) were loaded into a custom MATLAB script. The user manually clicks 3 anatomical landmarks — one on the upper arm, one at the elbow vertex, and one on the forearm — and MATLAB computes the joint angle using the `atan2` formula. PoseNet (TensorFlow.js) provides additional landmark validation and cross-checking.
 
-| Target | Measured Angle |
-|--------|---------------|
-| Near straight | 176.08° |
-| Moderate bend | 124.81° |
-| ~90° bend | 99.84° |
-| Increased flex | 67.63° |
-| High flexion | 37.66° |
-
-### Phase 2 – Automated (Hough Transform)
-
-Automated detection matched manual accuracy within **±3–5°** across all tested poses, eliminating operator variability.
-
----
+### Phase 2 – Automated (Hough Transform in MATLAB)
+Building on the Phase 1 baseline, Phase 2 fully automates the angle measurement pipeline. The cyan sleeve marking is isolated via channel separation, a binary map is cleaned using morphological area opening, and the Hough transform detects the two dominant line segments (upper arm and forearm vectors). The intersection point is computed analytically and both acute and obtuse angles are overlaid on the image — no user input required.
 
 ## Limitations
 
